@@ -1,0 +1,21 @@
+services:
+  fastack-database:
+    image: postgres
+    hostname: database.fastack
+    container_name: database
+    restart: always
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "fastack"
+      POSTGRES_PASSWORD: "fastack"
+    ports:
+      - "5432:5432"
+
+networks:
+  default:
+    name: fastack
+    driver: bridge
+
+volumes:
+  database:

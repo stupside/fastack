@@ -1,0 +1,47 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Fastify backend",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prod": "node build/index.mjs",
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/index.ts",
+    "prepare": "pnpm drizzle-kit --config ./src/db/config.ts push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/autoload": "^6.0.3",
+    "@fastify/cors": "^10.0.2",
+    "@fastify/env": "^5.0.2",
+    "@fastify/jwt": "^9.0.3",
+    "@fastify/request-context": "^6.0.2",
+    "@fastify/sensible": "^6.0.2",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.1",
+    "@fastify/type-provider-typebox": "^5.1.0",
+    "@sinclair/typebox": "^0.34.14",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.39.0",
+    "fastify": "^5.2.1",
+    "fastify-cli": "^7.3.0",
+    "fastify-plugin": "^5.0.1",
+    "pg": "^8.13.1",
+    "zeromq": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "@types/pg": "^8.11.11",
+    "@types/qrcode": "^1.5.5",
+    "drizzle-kit": "^0.30.3",
+    "tap": "^21.0.1",
+    "tsx": "^4.19.2"
+  }
+}
