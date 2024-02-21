@@ -1,14 +1,19 @@
 import { type FC } from "react";
 
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from "@remix-run/node";
+
 import { useLoaderData } from "@remix-run/react";
 
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
-
-export const meta = () => {
-  return {
-    title: "View Event",
-    description: "View Event",
-  };
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: "Manage Event",
+    },
+  ];
 };
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
@@ -24,7 +29,7 @@ const PageComponent: FC = () => {
 
   return (
     <div>
-      <h1>View Event</h1>
+      <h1>Manage Event {id}</h1>
       <p>Event ID: {id}</p>
     </div>
   );

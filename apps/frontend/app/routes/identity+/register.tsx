@@ -1,17 +1,21 @@
 import type { FC } from "react";
 
-import { Form, Link, redirect } from "@remix-run/react";
+import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
 
-import type { ActionFunctionArgs } from "@remix-run/node";
+import { Form, Link, redirect } from "@remix-run/react";
 
 import { Type } from "@sinclair/typebox";
 import { Value } from "@sinclair/typebox/value";
 
-export const meta = () => {
-  return {
-    title: "Register",
-    description: "Register",
-  };
+import Input from "~/client/components/commons/forms/Input";
+import Submit from "~/client/components/commons/forms/Submit";
+
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: "Register",
+    },
+  ];
 };
 
 const ActionBody = Type.Object({
@@ -40,11 +44,11 @@ const PageComponent: FC = () => {
     <section className="m-auto">
       <Form method="POST">
         <div className="flex gap-y-3">
-          <input type="text" title="email" placeholder="Email" />
-          <input type="password" title="password" placeholder="Password" />
+          <Input type="text" name="email" placeholder="Email" />
+          <Input type="password" name="password" placeholder="Password" />
         </div>
         <div>
-          <button>Register</button>
+          <Submit>Register</Submit>
         </div>
       </Form>
       <Link

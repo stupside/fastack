@@ -1,19 +1,23 @@
 import type { FC } from "react";
 
-import { Form, Link, redirect } from "@remix-run/react";
+import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
 
-import type { ActionFunctionArgs } from "@remix-run/node";
+import { Form, Link, redirect } from "@remix-run/react";
 
 import { Type } from "@sinclair/typebox";
 import { Value } from "@sinclair/typebox/value";
 
 import storage from "~/server/storage/session.server";
 
-export const meta = () => {
-  return {
-    title: "Login",
-    description: "Login",
-  };
+import Input from "~/client/components/commons/forms/Input";
+import Submit from "~/client/components/commons/forms/Submit";
+
+export const meta: MetaFunction = () => {
+  return [
+    {
+      title: "Login",
+    },
+  ];
 };
 
 const ActionBody = Type.Object({
@@ -32,19 +36,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   console.log("register", body);
 
-  const session = await storage.getSession(request, async (session) => {
-    // TODO: Implement login logic here
+  const session = await storage.extractSession(request);
 
-    session.set("context", {
-      token: "123",
-    });
-
-    return storage.commitSession(session);
+  session.state.set("context", {
+    token: "TODO: get token from server",
   });
 
   return redirect("/dashboard", {
     headers: {
-      "Set-Cookie": session,
+      "Set-Cookie": await storage.commitSession(session.state),
     },
   });
 };
@@ -54,11 +54,11 @@ const PageComponent: FC = () => {
     <section className="m-auto">
       <Form method="POST">
         <div className="flex gap-y-3">
-          <input type="text" title="email" placeholder="Email" />
-          <input type="password" title="password" placeholder="Password" />
+          <Input type="text" name="email" placeholder="Email" />
+          <Input type="password" name="password" placeholder="Password" />
         </div>
         <div>
-          <button>Login</button>
+          <Submit>Login</Submit>
         </div>
       </Form>
       <Link

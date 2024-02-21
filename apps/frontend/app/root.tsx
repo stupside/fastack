@@ -52,7 +52,7 @@ const App: FC = () => {
         <Links />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
-      <body className="flex h-screen w-full overflow-x-hidden">
+      <body className="h-screen w-full overflow-x-hidden container m-auto">
         <Outlet />
         <Scripts />
         <LiveReload />

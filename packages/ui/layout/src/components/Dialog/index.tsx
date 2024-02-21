@@ -13,6 +13,7 @@ const Dialog: FC<
 > = ({ title, open, close, children }) => {
   return (
     <Transition appear as={HeadlessDialog} show={open} onClose={close}>
+      <HeadlessDialog.Overlay className="fixed inset-0 bg-slate-700 bg-opacity-50" />
       <div className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center">
           <Transition.Child
