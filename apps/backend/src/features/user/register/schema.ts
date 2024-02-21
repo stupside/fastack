@@ -4,10 +4,16 @@ import { Static, Type } from '@sinclair/typebox'
 
 const Body = Type.Object(
   {
-    name: Type.String({
+    firstname: Type.String({
       description: "The user's name",
       minLength: 5,
       maxLength: 15,
+    }),
+
+    lastname: Type.String({
+      description: "The user's last name",
+      minLength: 5,
+      maxLength: 25,
     }),
     email: Type.String({ description: "The user's email", format: 'email' }),
     password: Type.String({

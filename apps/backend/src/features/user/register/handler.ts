@@ -11,8 +11,9 @@ import { Interface } from './schema'
 export const Handler: MyRoute<Interface> = () => async (request, response) => {
   const user = await prisma.user.create({
     data: {
-      name: request.body.name,
-      email: request.body.email,
+      // email: request.body.email,
+      lastname: request.body.lastname,
+      firstname: request.body.firstname,
       password: request.body.password, // TODO: hash with argon2
     },
     select: {
