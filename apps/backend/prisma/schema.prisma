@@ -10,11 +10,111 @@ datasource db {
   url      = env("MY_DATABASE_URL")
 }
 
+model Event {
+  id Int @id @default(autoincrement())
+
+  name String @unique
+
+  nbParticipantMax Int
+
+  startDate DateTime
+  endDate   DateTime
+
+  menus        Menu[]
+  participants Participant[]
+}
+
 model User {
   id Int @id @default(autoincrement())
 
-  email String @unique
+  firstname String
+  lastname  String
+  password  String
 
-  name     String
-  password String
+  diets          Diet[]
+  participations Participant[]
+}
+
+model Participant {
+  userId  Int
+  eventId Int
+
+  menuId Int
+
+  user  User  @relation(fields: [userId], references: [id])
+  menu  Menu  @relation(fields: [menuId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
+
+  @@id([eventId, userId])
+}
+
+model Menu {
+  id Int @id @default(autoincrement())
+
+  eventId Int
+
+  description String?
+
+  dishes Dish[]
+
+  participants Participant[]
+
+  event Event @relation(fields: [eventId], references: [id])
+}
+
+model Dish {
+  id Int @id @default(autoincrement())
+
+  menuId Int
+
+  description String?
+
+  ingredients IngredientInDish[]
+
+  menu Menu @relation(fields: [menuId], references: [id])
+}
+
+model Ingredient {
+  id Int @id @default(autoincrement())
+
+  name String @unique
+
+  description String?
+
+  measurementUnitId Int
+
+  diets       Diet[]
+  ingredients IngredientInDish[]
+
+  measurementUnit MeasurementUnit @relation(fields: [measurementUnitId], references: [id])
+}
+
+model Diet {
+  id Int @id @default(autoincrement())
+
+  name String @unique
+
+  ingredients Ingredient[]
+  User        User[]
+}
+
+model MeasurementUnit {
+  id Int @id @default(autoincrement())
+
+  name String @unique
+
+  ingredients Ingredient[]
+}
+
+model IngredientInDish {
+  dishId       Int
+  ingredientId Int
+
+  unitPrice Float @default(0)
+  quantity  Float @default(0)
+
+  dish       Dish       @relation(fields: [dishId], references: [id])
+  ingredient Ingredient @relation(fields: [ingredientId], references: [id])
+
+  @@id([ingredientId, dishId])
 }
