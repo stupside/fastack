@@ -1,28 +1,28 @@
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from '@remix-run/node'
 
-import { Outlet, json, useLoaderData } from "@remix-run/react";
+import { Outlet, json, useLoaderData } from '@remix-run/react'
 
-import storage from "~/server/storage/session.server";
+import storage from '~/server/storage/session.server'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   // TODO: get user sub from backend
   const sub = {
     free: true,
-    remaining: "5 days",
-    updated: "2022-01-01",
-  };
+    remaining: '5 days',
+    updated: '2022-01-01',
+  }
 
-  const session = await storage.extractSession(request);
+  const session = await storage.extractSession(request)
 
   return json({
-    name: "Kilian Houpeurt",
+    name: 'Kilian Houpeurt',
     sub,
     session: JSON.stringify(session.state.data),
-  });
-};
+  })
+}
 
 const PageComponent = () => {
-  const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>()
 
   return (
     <>
@@ -50,7 +50,7 @@ const PageComponent = () => {
         <Outlet />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default PageComponent;
+export default PageComponent

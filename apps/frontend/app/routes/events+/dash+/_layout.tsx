@@ -1,6 +1,6 @@
-import type { FC } from "react";
+import type { FC } from 'react'
 
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import type { LoaderFunctionArgs } from '@remix-run/node'
 
 import {
   Link,
@@ -8,21 +8,21 @@ import {
   json,
   useLoaderData,
   useNavigate,
-} from "@remix-run/react";
+} from '@remix-run/react'
 
-import storage from "~/server/storage/session.server";
+import storage from '~/server/storage/session.server'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const session = await storage.extractSession(request);
+  const session = await storage.extractSession(request)
 
-  void session; // TODO: get events
+  void session // TODO: get events
 
   return json({
     hosting: [
       {
         id: 0,
-        name: "Event 1",
-        date: "2022-01-01",
+        name: 'Event 1',
+        date: '2022-01-01',
         participants: {
           cur: 10,
           max: 20,
@@ -30,8 +30,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
       {
         id: 1,
-        name: "Event 2",
-        date: "2022-01-02",
+        name: 'Event 2',
+        date: '2022-01-02',
         participants: {
           cur: 10,
           max: 20,
@@ -41,8 +41,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     attending: [
       {
         id: 2,
-        name: "Event 3",
-        date: "2022-01-03",
+        name: 'Event 3',
+        date: '2022-01-03',
         participants: {
           cur: 10,
           max: 20,
@@ -50,8 +50,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
       {
         id: 3,
-        name: "Event 4",
-        date: "2022-01-04",
+        name: 'Event 4',
+        date: '2022-01-04',
         participants: {
           cur: 10,
           max: 20,
@@ -59,8 +59,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
       {
         id: 4,
-        name: "Event 5",
-        date: "2022-01-05",
+        name: 'Event 5',
+        date: '2022-01-05',
         participants: {
           cur: 10,
           max: 20,
@@ -68,21 +68,21 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       },
       {
         id: 5,
-        name: "Event 6",
-        date: "2022-01-06",
+        name: 'Event 6',
+        date: '2022-01-06',
         participants: {
           cur: 10,
           max: 20,
         },
       },
     ],
-  });
-};
+  })
+}
 
 const PageComponent: FC = () => {
-  const data = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <>
@@ -94,13 +94,13 @@ const PageComponent: FC = () => {
             <h2 className="text-xl mb-3">Hosting</h2>
             <ul className="list-none">
               {data.hosting.map((event) => {
-                const spots = event.participants.max - event.participants.cur;
+                const spots = event.participants.max - event.participants.cur
 
                 return (
                   <li
                     key={event.id}
                     onClick={() => {
-                      navigate(`/events/${event.id}`);
+                      navigate(`/events/${event.id}`)
                     }}
                     className="cursor-pointer mb-2 px-4 py-3 flex justify-between border-2 border-slate-800 bg-slate-50 hover:scale-[101%] transition-colors duration-200"
                   >
@@ -110,12 +110,12 @@ const PageComponent: FC = () => {
                     </div>
                     <span>{event.date}</span>
                   </li>
-                );
+                )
               })}
             </ul>
             <Link
               to={{
-                pathname: "/events/dash/create",
+                pathname: '/events/dash/create',
               }}
             >
               Create Event
@@ -125,13 +125,13 @@ const PageComponent: FC = () => {
             <h2 className="text-xl mb-3">Attending</h2>
             <ul className="list-none">
               {data.attending.map((event) => {
-                const spots = event.participants.max - event.participants.cur;
+                const spots = event.participants.max - event.participants.cur
 
                 return (
                   <li
                     key={event.id}
                     onClick={() => {
-                      navigate(`/events/${event.id}`);
+                      navigate(`/events/${event.id}`)
                     }}
                     className="cursor-pointer mb-2 px-4 py-3 flex justify-between border-2 border-slate-800 bg-slate-50 hover:scale-[101%] transition-colors duration-200"
                   >
@@ -141,12 +141,12 @@ const PageComponent: FC = () => {
                     </div>
                     <span>{event.date}</span>
                   </li>
-                );
+                )
               })}
             </ul>
             <Link
               to={{
-                pathname: "/events/dash/attend",
+                pathname: '/events/dash/attend',
               }}
             >
               Attend Event
@@ -155,7 +155,7 @@ const PageComponent: FC = () => {
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default PageComponent;
+export default PageComponent

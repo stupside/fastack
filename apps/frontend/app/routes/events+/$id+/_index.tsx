@@ -1,86 +1,86 @@
-import { useState, type FC, useEffect, useMemo } from "react";
+import { useState, type FC, useEffect, useMemo } from 'react'
 
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData } from '@remix-run/react'
 
 import {
   json,
   type LoaderFunctionArgs,
   type MetaFunction,
-} from "@remix-run/node";
+} from '@remix-run/node'
 
-import storage from "~/server/storage/session.server";
-import Submit from "~/client/components/commons/forms/Submit";
+import storage from '~/server/storage/session.server'
+import Submit from '~/client/components/commons/forms/Submit'
 
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Event",
+      title: 'Event',
     },
-  ];
-};
+  ]
+}
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
-  if (params.id === undefined) throw new Error();
+  if (params.id === undefined) throw new Error()
 
-  const session = await storage.extractSession(request);
+  const session = await storage.extractSession(request)
 
-  void session; // TODO: get event
+  void session // TODO: get event
 
   return json({
-    title: "Event 1",
-    date: "2022-01-01",
+    title: 'Event 1',
+    date: '2022-01-01',
     choice: {
       dish: 0,
     },
     menus: [
       {
         id: 0,
-        name: "Menu 1",
-        description: "Description 1",
+        name: 'Menu 1',
+        description: 'Description 1',
         dishes: [
           {
             id: 0,
-            name: "Dish 1",
-            description: "Description 1",
+            name: 'Dish 1',
+            description: 'Description 1',
             ingredients: [
               {
                 id: 0,
-                name: "Ingredient 1",
+                name: 'Ingredient 1',
               },
               {
                 id: 1,
-                name: "Ingredient 2",
+                name: 'Ingredient 2',
               },
               {
                 id: 2,
-                name: "Ingredient 3",
+                name: 'Ingredient 3',
               },
               {
                 id: 3,
-                name: "Ingredient 4",
+                name: 'Ingredient 4',
               },
             ],
           },
           {
             id: 1,
-            name: "Dish 2",
-            description: "Description 2",
+            name: 'Dish 2',
+            description: 'Description 2',
             ingredients: [
               {
                 id: 0,
-                name: "Ingredient 1",
+                name: 'Ingredient 1',
               },
               {
                 id: 1,
-                name: "Ingredient 2",
+                name: 'Ingredient 2',
               },
               {
                 id: 2,
-                name: "Ingredient 3",
+                name: 'Ingredient 3',
               },
               {
                 id: 3,
-                name: "Ingredient 4",
+                name: 'Ingredient 4',
               },
             ],
           },
@@ -88,52 +88,52 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       },
       {
         id: 1,
-        name: "Menu 2",
-        description: "Description 2",
+        name: 'Menu 2',
+        description: 'Description 2',
         dishes: [
           {
             id: 0,
-            name: "Dish 1",
-            description: "Description 1",
+            name: 'Dish 1',
+            description: 'Description 1',
             ingredients: [
               {
                 id: 0,
-                name: "Ingredient 1",
+                name: 'Ingredient 1',
               },
               {
                 id: 1,
-                name: "Ingredient 2",
+                name: 'Ingredient 2',
               },
               {
                 id: 2,
-                name: "Ingredient 3",
+                name: 'Ingredient 3',
               },
               {
                 id: 3,
-                name: "Ingredient 4",
+                name: 'Ingredient 4',
               },
             ],
           },
           {
             id: 1,
-            name: "Dish 2",
-            description: "Description 2",
+            name: 'Dish 2',
+            description: 'Description 2',
             ingredients: [
               {
                 id: 0,
-                name: "Ingredient 1",
+                name: 'Ingredient 1',
               },
               {
                 id: 1,
-                name: "Ingredient 2",
+                name: 'Ingredient 2',
               },
               {
                 id: 2,
-                name: "Ingredient 3",
+                name: 'Ingredient 3',
               },
               {
                 id: 3,
-                name: "Ingredient 4",
+                name: 'Ingredient 4',
               },
             ],
           },
@@ -141,29 +141,29 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       },
       {
         id: 2,
-        name: "Menu 3",
-        description: "Description 3",
+        name: 'Menu 3',
+        description: 'Description 3',
         dishes: [
           {
             id: 0,
-            name: "Dish 1",
-            description: "Description 1",
+            name: 'Dish 1',
+            description: 'Description 1',
             ingredients: [
               {
                 id: 0,
-                name: "Ingredient 1",
+                name: 'Ingredient 1',
               },
               {
                 id: 1,
-                name: "Ingredient 2",
+                name: 'Ingredient 2',
               },
               {
                 id: 2,
-                name: "Ingredient 3",
+                name: 'Ingredient 3',
               },
               {
                 id: 3,
-                name: "Ingredient 4",
+                name: 'Ingredient 4',
               },
             ],
           },
@@ -171,51 +171,51 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
       },
       {
         id: 3,
-        name: "Menu 4",
-        description: "Description 4",
+        name: 'Menu 4',
+        description: 'Description 4',
         dishes: [
           {
             id: 0,
-            name: "Dish 1",
-            description: "Description 1",
+            name: 'Dish 1',
+            description: 'Description 1',
             ingredients: [
               {
                 id: 0,
-                name: "Ingredient 1",
+                name: 'Ingredient 1',
               },
               {
                 id: 1,
-                name: "Ingredient 2",
+                name: 'Ingredient 2',
               },
               {
                 id: 2,
-                name: "Ingredient 3",
+                name: 'Ingredient 3',
               },
               {
                 id: 3,
-                name: "Ingredient 4",
+                name: 'Ingredient 4',
               },
             ],
           },
         ],
       },
     ],
-  });
-};
+  })
+}
 
 const PageComponent: FC = () => {
-  const { title, choice, date, menus } = useLoaderData<typeof loader>();
+  const { title, choice, date, menus } = useLoaderData<typeof loader>()
 
-  const [selection, setSelection] = useState(choice.dish);
+  const [selection, setSelection] = useState(choice.dish)
 
   const menu = useMemo(
     () => menus.find((menu) => menu.id === selection),
-    [menus, selection]
-  );
+    [menus, selection],
+  )
 
   useEffect(() => {
-    setSelection(choice.dish);
-  }, [choice.dish]);
+    setSelection(choice.dish)
+  }, [choice.dish])
 
   return (
     <>
@@ -226,10 +226,10 @@ const PageComponent: FC = () => {
       <div className="grid grid-cols-3 gap-x-5">
         <div className="grid col-span-2 grid-cols-2 gap-5">
           {menus.map((menu) => {
-            const selected = menu.id === selection;
+            const selected = menu.id === selection
 
             const highlight =
-              selected && menu.id === choice.dish ? true : selected;
+              selected && menu.id === choice.dish ? true : selected
 
             return (
               <article key={menu.id} className="flex flex-col gap-y-4">
@@ -258,7 +258,7 @@ const PageComponent: FC = () => {
                   ))}
                 </ul>
               </article>
-            );
+            )
           })}
         </div>
         <div className="flex">
@@ -293,7 +293,7 @@ const PageComponent: FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default PageComponent;
+export default PageComponent

@@ -1,26 +1,26 @@
-import { type FC } from "react";
+import { type FC } from 'react'
 
-import { Form, json, useActionData, useNavigate } from "@remix-run/react";
+import { Form, json, useActionData, useNavigate } from '@remix-run/react'
 
-import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { ActionFunctionArgs, MetaFunction } from '@remix-run/node'
 
-import { Type } from "@sinclair/typebox";
-import { Value } from "@sinclair/typebox/value";
+import { Type } from '@sinclair/typebox'
+import { Value } from '@sinclair/typebox/value'
 
-import { Dialog } from "@fastack/ui-layout";
+import { Dialog } from '@fastack/ui-layout'
 
-import storage from "~/server/storage/session.server";
+import storage from '~/server/storage/session.server'
 
-import Input from "~/client/components/commons/forms/Input";
-import Submit from "~/client/components/commons/forms/Submit";
+import Input from '~/client/components/commons/forms/Input'
+import Submit from '~/client/components/commons/forms/Submit'
 
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Create Event",
+      title: 'Create Event',
     },
-  ];
-};
+  ]
+}
 
 const ActionBody = Type.Object({
   name: Type.String({
@@ -33,38 +33,38 @@ const ActionBody = Type.Object({
     minimum: 1,
     maximum: 100,
   }),
-});
+})
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const session = await storage.extractSession(request);
+  const session = await storage.extractSession(request)
 
-  void session; // TODO: create event
+  void session // TODO: create event
 
-  const form = await request.formData();
+  const form = await request.formData()
 
-  const body = Value.Decode(ActionBody, form.entries());
+  const body = Value.Decode(ActionBody, form.entries())
 
-  void body; // TODO: create event
+  void body // TODO: create event
 
-  return json({ id: 0 });
-};
+  return json({ id: 0 })
+}
 
 const PageComponent: FC = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const data = useActionData<typeof action>();
+  const data = useActionData<typeof action>()
 
-  const open = data === undefined;
+  const open = data === undefined
 
   return (
     <Dialog
       title={<h1>Create an event</h1>}
       open={open}
       close={() => {
-        navigate("../", {
+        navigate('../', {
           replace: true,
-          relative: "route",
-        });
+          relative: 'route',
+        })
       }}
     >
       <Form method="POST" className="flex flex-col gap-y-4">
@@ -77,7 +77,7 @@ const PageComponent: FC = () => {
         <Submit>Create</Submit>
       </Form>
     </Dialog>
-  );
-};
+  )
+}
 
-export default PageComponent;
+export default PageComponent

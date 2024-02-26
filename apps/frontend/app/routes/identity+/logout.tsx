@@ -1,13 +1,13 @@
-import { type LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { type LoaderFunctionArgs, redirect } from '@remix-run/node'
 
-import storage from "~/server/storage/session.server";
+import storage from '~/server/storage/session.server'
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const session = await storage.extractSession(request);
+  const session = await storage.extractSession(request)
 
-  return redirect("/", {
+  return redirect('/', {
     headers: {
-      "Set-Cookie": await storage.destroySession(session.state),
+      'Set-Cookie': await storage.destroySession(session.state),
     },
-  });
-};
+  })
+}

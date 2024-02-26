@@ -3,7 +3,7 @@ const EventMenu = () => {
     <div>
       <h2>Event Menu</h2>
     </div>
-  );
-};
+  )
+}
 
-export default EventMenu;
+export default EventMenu

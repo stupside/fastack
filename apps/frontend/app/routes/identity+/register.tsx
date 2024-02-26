@@ -1,43 +1,43 @@
-import type { FC } from "react";
+import type { FC } from 'react'
 
-import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { ActionFunctionArgs, MetaFunction } from '@remix-run/node'
 
-import { Form, Link, redirect } from "@remix-run/react";
+import { Form, Link, redirect } from '@remix-run/react'
 
-import { Type } from "@sinclair/typebox";
-import { Value } from "@sinclair/typebox/value";
+import { Type } from '@sinclair/typebox'
+import { Value } from '@sinclair/typebox/value'
 
-import Input from "~/client/components/commons/forms/Input";
-import Submit from "~/client/components/commons/forms/Submit";
+import Input from '~/client/components/commons/forms/Input'
+import Submit from '~/client/components/commons/forms/Submit'
 
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Register",
+      title: 'Register',
     },
-  ];
-};
+  ]
+}
 
 const ActionBody = Type.Object({
   email: Type.String({
-    format: "email",
+    format: 'email',
   }),
   password: Type.String({
     minLength: 8,
   }),
-});
+})
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const form = await request.formData();
+  const form = await request.formData()
 
-  const body = Value.Decode(ActionBody, form.entries());
+  const body = Value.Decode(ActionBody, form.entries())
 
-  console.log("register", body);
+  void body
 
   // TODO: Implement register logic here
 
-  return redirect("/identity/register");
-};
+  return redirect('/identity/register')
+}
 
 const PageComponent: FC = () => {
   return (
@@ -53,13 +53,13 @@ const PageComponent: FC = () => {
       </Form>
       <Link
         to={{
-          pathname: "/identity/login",
+          pathname: '/identity/login',
         }}
       >
         Login
       </Link>
     </section>
-  );
-};
+  )
+}
 
-export default PageComponent;
+export default PageComponent
