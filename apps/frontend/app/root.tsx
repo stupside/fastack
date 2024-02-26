@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { type FC } from 'react'
 
 import {
   Links,
@@ -7,42 +7,42 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from '@remix-run/react'
 
-import { type LinksFunction, type MetaFunction } from "@remix-run/node";
+import { type LinksFunction, type MetaFunction } from '@remix-run/node'
 
-import styles from "./tailwind.css";
+import styles from './tailwind.css'
 
 export const meta: MetaFunction = () => {
   return [
     {
-      name: "charset",
-      content: "utf-8",
+      name: 'charset',
+      content: 'utf-8',
     },
     {
-      name: "description",
-      content: "Fastack",
+      name: 'description',
+      content: 'Fastack',
     },
     {
-      name: "viewport",
-      content: "width=device-width, initial-scale=1",
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
     },
     {
-      name: "title",
-      content: "Fastack",
+      name: 'title',
+      content: 'Fastack',
     },
     {
-      name: "og:title",
-      content: "Fastack",
+      name: 'og:title',
+      content: 'Fastack',
     },
     {
-      name: "og:description",
-      content: "Fastack",
+      name: 'og:description',
+      content: 'Fastack',
     },
-  ];
-};
+  ]
+}
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 const App: FC = () => {
   return (
@@ -59,7 +59,7 @@ const App: FC = () => {
         <ScrollRestoration />
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default App;
+export default App

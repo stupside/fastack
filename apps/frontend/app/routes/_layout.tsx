@@ -1,15 +1,17 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet } from '@remix-run/react'
 
-import { Footer, Header } from "~/client/components/layout";
+import { Footer, Header } from '~/client/components/layout'
 
 const PageComponent = () => {
-  return <>
-    <Header />
-    <div className='grow-1'>
-      <Outlet />
-    </div>
-    <Footer />
-  </>;
-};
+  return (
+    <>
+      <Header />
+      <div className="grow-1">
+        <Outlet />
+      </div>
+      <Footer />
+    </>
+  )
+}
 
-export default PageComponent;
+export default PageComponent

@@ -1,12 +1,12 @@
-import { Static } from "@sinclair/typebox";
+import { Static } from '@sinclair/typebox'
 
-import { MyRoute, MySessionSchema } from "../../../fastify";
+import { MyRoute, MySessionSchema } from '../../../fastify'
 
-import prisma from "../../../utils/prisma";
+import prisma from '../../../utils/prisma'
 
-import { Hook } from "../../hook";
+import { Hook } from '../../hook'
 
-import { Interface } from "./schema";
+import { Interface } from './schema'
 
 export const Handler: MyRoute<Interface> = () => async (request, response) => {
   const user = await prisma.user.create({
@@ -18,17 +18,17 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
     select: {
       id: true,
     },
-  });
+  })
 
   const payload: Static<typeof MySessionSchema> = {
     user: user.id,
     claims: [Hook.Sse.Claim],
-  };
+  }
 
-  const token = await response.jwtSign(payload);
+  const token = await response.jwtSign(payload)
 
   return await response.send({
     token,
     id: user.id,
-  });
-};
+  })
+}

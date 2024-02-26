@@ -1,21 +1,21 @@
-import fp from "fastify-plugin";
+import fp from 'fastify-plugin'
 
-import jwt from "@fastify/jwt";
+import jwt from '@fastify/jwt'
 
 /**
  * This plugins adds jwt support
  *
  * @see https://github.com/fastify/fastify-jwt
  */
-const plugin = fp(async (fastify, _) => {
+const plugin = fp(async (fastify) => {
   await fastify.register(jwt, {
-    secret: Buffer.from(fastify.config.MY_JWT_SECRET, "hex"),
+    secret: Buffer.from(fastify.config.MY_JWT_SECRET, 'hex'),
     sign: {
-      iss: "fastack",
-      aud: "fastack.aud",
+      iss: 'fastack',
+      aud: 'fastack.aud',
       expiresIn: fastify.config.MY_JWT_EXPIRY,
     },
-  });
-});
+  })
+})
 
-export default plugin;
+export default plugin

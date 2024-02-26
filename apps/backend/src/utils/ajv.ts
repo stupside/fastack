@@ -1,14 +1,14 @@
-import Ajv from "ajv";
+import Ajv from 'ajv'
 
-import addFormats from "ajv-formats";
+import addFormats from 'ajv-formats'
 
 const formats = addFormats(
   new Ajv({
     useDefaults: true,
     coerceTypes: true,
-    removeAdditional: "all",
+    removeAdditional: 'all',
   }),
-  ["duration", "email", "uri", "ipv4"]
-);
+  ['duration', 'email', 'uri', 'ipv4'],
+)
 
-export { formats };
+export { formats }

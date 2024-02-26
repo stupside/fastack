@@ -1,5 +1,5 @@
 type MySessionFlashData = {
-  error: string;
-};
+  error: string
+}
 
-export { type MySessionFlashData };
+export { type MySessionFlashData }

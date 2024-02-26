@@ -1,19 +1,19 @@
-import { type FC } from "react";
+import { type FC } from 'react'
 
-import { Dialog } from "@fastack/ui-layout";
+import { Dialog } from '@fastack/ui-layout'
 
 const PageComponent: FC = () => {
   return (
     <Dialog
       open
       close={() => {
-        console.log("close");
+        console.log('close')
       }}
       title={<h1>Welcome to fastack</h1>}
     >
       This is a custom component from a rollup package
     </Dialog>
-  );
-};
+  )
+}
 
-export default PageComponent;
+export default PageComponent

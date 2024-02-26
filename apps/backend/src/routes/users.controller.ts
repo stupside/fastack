@@ -1,13 +1,13 @@
-import { FastifyInstance } from "fastify";
+import { FastifyInstance } from 'fastify'
 
-import { User } from "../features/user";
+import { User } from '../features/user'
 
-const { Register } = User;
+const { Register } = User
 
 const route = async (fastify: FastifyInstance) => {
-  fastify.post("", Register.Shorthand, Register.Route(fastify));
-};
+  fastify.post('', Register.Shorthand, Register.Route(fastify))
+}
 
 export default async (fastify: FastifyInstance) => {
-  await fastify.register(route, { prefix: "/users" });
-};
+  await fastify.register(route, { prefix: '/users' })
+}

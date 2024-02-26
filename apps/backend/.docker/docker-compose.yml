@@ -5,10 +5,10 @@ services:
     container_name: database
     restart: always
     environment:
-      POSTGRES_USER: "fastack"
-      POSTGRES_PASSWORD: "fastack"
+      POSTGRES_USER: 'fastack'
+      POSTGRES_PASSWORD: 'fastack'
     ports:
-      - "5432:5432"
+      - '5432:5432'
 
   redis:
     image: bitnami/redis
@@ -16,10 +16,10 @@ services:
     container_name: redis
     restart: always
     environment:
-      REDIS_REPLICATION_MODE: "master"
-      REDIS_PASSWORD: "fastack"
+      REDIS_REPLICATION_MODE: 'master'
+      REDIS_PASSWORD: 'fastack'
     ports:
-      - "6379:6379"
+      - '6379:6379'
 
 networks:
   default:

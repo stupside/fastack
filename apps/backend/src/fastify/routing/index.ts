@@ -2,11 +2,11 @@ import {
   FastifySchema,
   RouteGenericInterface,
   RouteShorthandOptions,
-} from "fastify";
+} from 'fastify'
 
-import MyRoute from "./MyRoute";
+import MyRoute from './MyRoute'
 
-import { hook } from "../auth";
+import { hook } from '../auth'
 
 export const Featured = <TInterface extends RouteGenericInterface>(
   action: string,
@@ -16,14 +16,14 @@ export const Featured = <TInterface extends RouteGenericInterface>(
   const shorthand: RouteShorthandOptions = {
     schema,
     onRequest: schema.security ? hook([action]) : undefined,
-  };
+  }
 
   return {
     Claim: action,
     Route: route,
     Schema: schema,
     Shorthand: shorthand,
-  };
-};
+  }
+}
 
-export { MyRoute };
+export { MyRoute }

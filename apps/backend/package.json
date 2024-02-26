@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "prod": "node build/index.mjs",
-    "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc --noEmit"
+    "build": "tsc -p tsconfig.json"
   },
   "keywords": [],
   "author": "",
@@ -38,7 +37,6 @@
     "@types/node": "^20.11.19",
     "prisma": "^5.9.1",
     "tap": "^18.7.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "ts-node": "^10.9.2"
   }
 }

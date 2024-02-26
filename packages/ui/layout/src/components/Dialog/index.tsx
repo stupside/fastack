@@ -1,14 +1,14 @@
-import { type FC, type PropsWithChildren, type ReactElement } from "react";
+import { type FC, type PropsWithChildren, type ReactElement } from 'react'
 
-import { Dialog as HeadlessDialog, Transition } from "@headlessui/react";
+import { Dialog as HeadlessDialog, Transition } from '@headlessui/react'
 
-import DialogPanel from "./Panel";
+import DialogPanel from './Panel'
 
 const Dialog: FC<
   PropsWithChildren<{
-    open: boolean;
-    close: () => void;
-    title: ReactElement;
+    open: boolean
+    close: () => void
+    title: ReactElement
   }>
 > = ({ title, open, close, children }) => {
   return (
@@ -32,7 +32,7 @@ const Dialog: FC<
         </div>
       </div>
     </Transition>
-  );
-};
+  )
+}
 
-export default Dialog;
+export default Dialog

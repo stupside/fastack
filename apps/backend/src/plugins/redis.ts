@@ -1,22 +1,22 @@
-import fp from "fastify-plugin";
+import fp from 'fastify-plugin'
 
-import redis from "@fastify/redis";
+import redis from '@fastify/redis'
 
 /**
  * This plugins adds redis support
  *
  * @see https://github.com/fastify/fastify-redis
  */
-const plugin = fp(async (fastify, _) => {
+const plugin = fp(async (fastify) => {
   await fastify.register(redis, {
-    namespace: "myconsumer",
+    namespace: 'myconsumer',
     url: fastify.config.MY_REDIS_URL,
-  });
+  })
 
   await fastify.register(redis, {
-    namespace: "myproducer",
+    namespace: 'myproducer',
     url: fastify.config.MY_REDIS_URL,
-  });
-});
+  })
+})
 
-export default plugin;
+export default plugin

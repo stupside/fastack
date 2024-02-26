@@ -2,6 +2,22 @@
   "scripts": {
     "dev": "pnpm -r dev",
     "build": "pnpm -r build",
-    "typecheck": "pnpm -r typecheck"
+    "prettier:fix": "prettier --write .",
+    "eslint:fix": "pnpm -r exec eslint . --fix",
+    "prettier:check": "prettier --check .",
+    "eslint:check": "pnpm -r exec eslint ."
+  },
+  "dependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^7.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0"
+  },
+  "engines": {
+    "npm": "use pnpm",
+    "yarn": "use pnpm"
   }
 }

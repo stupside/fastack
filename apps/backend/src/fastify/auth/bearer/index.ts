@@ -1,3 +1,3 @@
-import hook from "./hook";
+import hook from './hook'
 
-export { hook };
+export { hook }

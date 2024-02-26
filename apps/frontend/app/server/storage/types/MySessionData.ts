@@ -1,7 +1,7 @@
 type MySessionData = {
   context: {
-    token: string;
-  };
-};
+    token: string
+  }
+}
 
-export { type MySessionData };
+export { type MySessionData }
