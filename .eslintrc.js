@@ -13,9 +13,9 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
   ],
   rules: {
-    'no-console': 'warn',
+    'no-console': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-explicit-any': 'error',
   },
   ignorePatterns: ['node_modules', 'dist', 'build', 'types'],
 }

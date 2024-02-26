@@ -7,7 +7,7 @@ const PageComponent: FC = () => {
     <Dialog
       open
       close={() => {
-        console.log('close')
+        alert('close')
       }}
       title={<h1>Welcome to fastack</h1>}
     >

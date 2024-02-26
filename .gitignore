@@ -1,5 +1,7 @@
 .env
 
+.husky/
+
 .cache/
 
 dist/
@@ -9,3 +11,5 @@ node_modules/
 
 .idea/
 .vscode/
+
+.eslintcache
