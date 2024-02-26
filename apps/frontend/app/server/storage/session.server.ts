@@ -13,41 +13,39 @@ const storage = createCookieSessionStorage<MySessionData, MySessionFlashData>({
   },
 })
 
-type MySession = Session<MySessionData, MySessionFlashData>
+export type MySession = Session<MySessionData, MySessionFlashData>
 
-const fromCookies = async <TResult>(
-  request: Request,
-  callback: (session: MySession) => Promise<TResult>,
-): Promise<TResult> => {
-  const session = await storage.getSession(request.headers.get('Cookie'))
+const extractSession = async (request: Request) => {
+  const cookie = request.headers.get('Cookie')
 
-  return callback(session)
-}
+  const session = await storage.getSession(cookie)
 
-const requireValue = <TKey extends keyof MySessionData>(
-  session: MySession,
-  key: TKey,
-) => {
-  const value = session.get(key)
+  const requireValue = <TKey extends keyof MySessionData>(key: TKey) => {
+    const value = session.get(key)
 
-  if (value === undefined) {
-    session.flash('error', `Could not resolve ${key} value from session.`)
+    if (value === undefined) {
+      session.flash('error', `Could not resolve ${key} value from session.`)
 
-    throw new Error(`Could not resolve ${key}`)
+      throw new Error(`Could not resolve ${key}`)
+    }
+
+    return value
   }
 
-  return value
+  const hasValue = <TKey extends keyof MySessionData>(key: TKey): boolean => {
+    return session.has(key)
+  }
+
+  return {
+    hasValue,
+    requireValue,
+    state: session,
+  }
 }
 
-const hasValue = <TKey extends keyof MySessionData>(
-  session: MySession,
-  key: TKey,
-): boolean => {
-  return session.has(key)
-}
-
-export default Object.assign(storage, {
-  hasValue,
-  fromCookies,
-  requireValue,
+const session = Object.assign(storage, {
+  extractSession,
 })
+
+export { session }
+export default session
