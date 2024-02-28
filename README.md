@@ -2,7 +2,7 @@
 
 Fastack is a versatile project template meticulously designed for proof-of-concept applications, harnessing the capabilities of Fastify, RemixJS, and Rollup.
 
-**Note:** Ensure PNPM is used instead of NPM to benefit from its features for efficient dependency management and monorepo capabilities.
+**Note:** Ensure PNPM is used instead of NPM.
 
 ## Dependencies
 

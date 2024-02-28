@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "prod": "node build/index.mjs",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "prepare": "npx prisma generate"
   },
   "keywords": [],
   "author": "",
