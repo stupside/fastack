@@ -46,7 +46,7 @@ export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 const App: FC = () => {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-zinc-50">
       <head>
         <Meta />
         <Links />
