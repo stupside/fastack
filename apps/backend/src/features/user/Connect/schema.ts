@@ -6,12 +6,18 @@ const Body = Type.Object(
   {
     firstname: Type.String({
       description: "The user's firstname",
+      minLength: 3,
+      maxLength: 20,
     }),
     lastname: Type.String({
       description: "The user's lastname",
+      minLength: 3,
+      maxLength: 20,
     }),
     password: Type.String({
       description: "The user's password",
+      minLength: 8,
+      maxLength: 20,
     }),
   },
   {

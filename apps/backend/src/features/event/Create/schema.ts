@@ -6,6 +6,8 @@ const Body = Type.Object(
   {
     name: Type.String({
       description: "The event's name",
+      minLength: 3,
+      maxLength: 20,
     }),
     nbParticipantMax: Type.Number({
       description: "The event's maximum participant",
