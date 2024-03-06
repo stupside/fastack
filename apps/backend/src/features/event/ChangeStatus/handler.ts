@@ -7,18 +7,14 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
 
   if (identity === undefined) throw new Error('Unauthorized')
 
-  const event = await prisma.event.create({
+  const params: any = request.params
+
+  const event = await prisma.event.update({
+    where: {
+      id: parseInt(params.eventId),
+    },
     data: {
-      name: request.body.name,
-      nbParticipantMax: request.body.nbParticipantMax,
       status: request.body.status,
-      // startDate: request.body.startDate,
-      // endDate: request.body.endDate,
-      author: {
-        connect: {
-          id: identity.user,
-        },
-      },
     },
     select: {
       id: true,

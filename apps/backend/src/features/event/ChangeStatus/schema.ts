@@ -1,20 +1,11 @@
 import { FastifySchema, RouteGenericInterface } from 'fastify'
-
-import { Static, Type } from '@sinclair/typebox'
 import { StatusEvent } from '../StatusEvent'
+import { Static, Type } from '@sinclair/typebox'
 
 const Body = Type.Object(
   {
-    name: Type.String({
-      description: "The event's name",
-      minLength: 3,
-      maxLength: 20,
-    }),
-    nbParticipantMax: Type.Number({
-      description: "The event's maximum participant",
-    }),
     status: Type.Enum(StatusEvent, {
-      description: 'The status of event',
+      description: "The event's status",
     }),
     // startDate: Type.Date({
     //   description: "The event's start date",
