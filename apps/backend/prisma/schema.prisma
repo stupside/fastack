@@ -11,15 +11,14 @@ datasource db {
 }
 
 model Event {
-  id Int @id @default(autoincrement())
-
-  name String @unique
-
+  id               Int      @id @default(autoincrement())
+  name             String   @unique
   nbParticipantMax Int
+  startDate        DateTime
+  endDate          DateTime
 
-  startDate DateTime
-  endDate   DateTime
-
+  userId       Int
+  author       User          @relation(fields: [userId], references: [id])
   menus        Menu[]
   participants Participant[]
 }
@@ -33,6 +32,7 @@ model User {
 
   diets          Diet[]
   participations Participant[]
+  Event          Event[]
 }
 
 model Participant {

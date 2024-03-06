@@ -1,17 +1,10 @@
-import { Static } from '@sinclair/typebox'
-
-import { MyRoute, MySessionSchema } from '../../../fastify'
-
+import { MyRoute } from '../../../fastify'
 import prisma from '../../../utils/prisma'
-
-import { Hook } from '../../hook'
-
 import { Interface } from './schema'
 
 export const Handler: MyRoute<Interface> = () => async (request, response) => {
   const user = await prisma.user.create({
     data: {
-      // email: request.body.email,
       lastname: request.body.lastname,
       firstname: request.body.firstname,
       password: request.body.password, // TODO: hash with argon2
@@ -21,15 +14,7 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
     },
   })
 
-  const payload: Static<typeof MySessionSchema> = {
-    user: user.id,
-    claims: [Hook.Sse.Claim],
-  }
-
-  const token = await response.jwtSign(payload)
-
-  return await response.send({
-    token,
+  return response.send({
     id: user.id,
   })
 }
