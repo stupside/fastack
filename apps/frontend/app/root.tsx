@@ -46,19 +46,19 @@ export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
 const App: FC = () => {
   return (
-    <html lang="en" className="bg-zinc-50">
+      <html lang="en" className="bg-zinc-50">
       <head>
-        <Meta />
-        <Links />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+          <Meta/>
+          <Links/>
+          <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
       </head>
       <body className="h-screen w-full overflow-x-hidden container m-auto">
-        <Outlet />
-        <Scripts />
-        <LiveReload />
-        <ScrollRestoration />
+      <Outlet/>
+      <Scripts/>
+      <LiveReload/>
+      <ScrollRestoration/>
       </body>
-    </html>
+      </html>
   )
 }
 

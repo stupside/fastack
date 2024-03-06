@@ -29,20 +29,20 @@ const PageComponent = () => {
       <header className="my-5 flex gap-x-5 justify-between h-20">
         {/** this is a title */}
         <div>
-          <img className="h-20" alt="logo" src="/logo.png"/>
+          <img className="h-20" alt="logo" src="/logo.png" />
         </div>
         <div className="flex gap-x-5 justify-end h-20">
           <div className="h-20 w-70 flex flex-col">
             <div className="h-10 flex flex-row justify-between items-center">
               <h1 className="mr-4 inline-block text-2xl">{data.name}</h1>
               {data.sub.free ? (
-                  <span className="h-8 text-sm rounded-full py-2 px-2 bg-orange-400 text-white">
-                freemium
-              </span>
+                <span className="h-8 text-sm rounded-full py-2 px-2 bg-orange-400 text-white">
+                  freemium
+                </span>
               ) : (
-                  <span className="h-8 text-sm rounded-full py-2 px-2 bg-emerald-400 text-white">
-                premium
-              </span>
+                <span className="h-8 text-sm rounded-full py-2 px-2 bg-emerald-400 text-white">
+                  premium
+                </span>
               )}
             </div>
             <div className="h-10 w-70">
@@ -52,14 +52,14 @@ const PageComponent = () => {
             </div>
           </div>
           <img
-              alt="profile"
-              className="w-20 h-20 object-cover"
-              src="/profile_photo_example.jpg"
+            alt="profile"
+            className="w-20 h-20 object-cover"
+            src="/profile_photo_example.jpg"
           />
         </div>
       </header>
       <div>
-        <Outlet/>
+        <Outlet />
       </div>
     </>
   )
