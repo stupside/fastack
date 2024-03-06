@@ -14,7 +14,7 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
       id: parseInt(params.eventId),
       OR: [
         {
-          userId: identity.user,
+          author: identity.user,
         },
         {
           participants: {
@@ -37,7 +37,7 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
       id: wishEvent.id,
       name: wishEvent.name,
       nbParticipantMax: wishEvent.nbParticipantMax,
-      userId: wishEvent.userId,
+      author: wishEvent.author,
     })
   }
 }

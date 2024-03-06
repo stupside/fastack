@@ -19,7 +19,7 @@ const Reply = Type.Object(
     }),
     // startDate: Type.String(), // Adjust the type if needed
     // endDate: Type.String(), // Adjust the type if needed
-    userId: Type.Number({
+    author: Type.Number({
       description: 'id of the author',
       minimum: 0,
     }),

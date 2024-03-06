@@ -11,7 +11,7 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
     where: {
       OR: [
         {
-          userId: identity.user,
+          author: identity.user,
         },
         {
           participants: {

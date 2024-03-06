@@ -18,8 +18,8 @@ model Event {
   // startDate        DateTime
   // endDate          DateTime
 
-  userId       Int
-  author       User          @relation(fields: [userId], references: [id])
+  author       Int
+  userId       User          @relation(fields: [author], references: [id])
   menus        Menu[]
   participants Participant[]
 }
@@ -40,10 +40,10 @@ model Participant {
   userId  Int
   eventId Int
 
-  menuId Int
+  menuId Int?
 
   user  User  @relation(fields: [userId], references: [id])
-  menu  Menu  @relation(fields: [menuId], references: [id])
+  menu  Menu? @relation(fields: [menuId], references: [id])
   event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
   @@id([eventId, userId])
