@@ -11,8 +11,8 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
     data: {
       name: request.body.name,
       nbParticipantMax: request.body.nbParticipantMax,
-      startDate: request.body.startDate,
-      endDate: request.body.endDate,
+      // startDate: request.body.startDate,
+      // endDate: request.body.endDate,
       author: {
         connect: {
           id: identity.user,

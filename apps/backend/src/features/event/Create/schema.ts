@@ -10,12 +10,12 @@ const Body = Type.Object(
     nbParticipantMax: Type.Number({
       description: "The event's maximum participant",
     }),
-    startDate: Type.Date({
-      description: "The event's start date",
-    }),
-    endDate: Type.Date({
-      description: "The event's end date",
-    }),
+    // startDate: Type.Date({
+    //   description: "The event's start date",
+    // }),
+    // endDate: Type.Date({
+    //   description: "The event's end date",
+    // }),
   },
   {
     readOnly: true,
