@@ -7,7 +7,7 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
 
   if (identity === undefined) throw new Error('Unauthorized')
 
-  const params: any = request.params
+  const params = request.params
 
   const event = await prisma.event.update({
     where: {

@@ -28,9 +28,22 @@ const Reply = Type.Object(
   },
 )
 
+const Params = Type.Object(
+  {
+    eventId: Type.String({
+      description: "event's id to change the status",
+      minLength: 1,
+    }),
+  },
+  {
+    readOnly: true,
+  },
+)
+
 export interface Interface extends RouteGenericInterface {
   Body: Static<typeof Body>
   Reply: Static<typeof Reply>
+  Params: Static<typeof Params>
 }
 
 export const Schema: FastifySchema = {

@@ -11,8 +11,21 @@ const Reply = Type.Object(
   },
 )
 
+const Params = Type.Object(
+  {
+    eventId: Type.String({
+      description: "Event's id to delete",
+      minLength: 1,
+    }),
+  },
+  {
+    readOnly: true,
+  },
+)
+
 export interface Interface extends RouteGenericInterface {
   Reply: Static<typeof Reply>
+  Params: Static<typeof Params>
 }
 
 export const Schema: FastifySchema = {

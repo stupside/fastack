@@ -2,21 +2,6 @@ import { FastifySchema, RouteGenericInterface } from 'fastify'
 
 import { Static, Type } from '@sinclair/typebox'
 
-// const Participant = Type.Object({
-//   userId: Type.Number({
-//     description: 'id of user',
-//     minimum: 0,
-//   }),
-//   eventId: Type.Number({
-//     description: 'id of event',
-//     minimum: 0,
-//   }),
-//   menuId: Type.Number({
-//     description: "menu's id",
-//     minimum: 0,
-//   }),
-// })
-
 const Reply = Type.Object(
   {
     id: Type.Number({
@@ -47,8 +32,16 @@ const Reply = Type.Object(
   },
 )
 
+const Params = Type.Object({
+  eventId: Type.String({
+    description: "event's id that the user want to display",
+    minLength: 1,
+  }),
+})
+
 export interface Interface extends RouteGenericInterface {
   Reply: Static<typeof Reply>
+  Params: Static<typeof Params>
 }
 
 export const Schema: FastifySchema = {

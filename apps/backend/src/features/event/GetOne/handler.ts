@@ -5,9 +5,7 @@ import prisma from '../../../utils/prisma'
 export const Handler: MyRoute<Interface> = () => async (request, response) => {
   const identity = request.requestContext.get('identity')
 
-  console.log('Event id : ', request.params)
-
-  const params: any = request.params
+  const params = request.params
 
   if (identity === undefined) throw new Error('Unauthorized')
 
