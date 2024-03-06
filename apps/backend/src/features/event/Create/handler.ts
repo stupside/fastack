@@ -24,6 +24,19 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
     },
   })
 
+  const participant = await prisma.participant.create({
+    data: {
+      userId: identity.user,
+      eventId: event.id,
+      menuId: 1,
+    },
+    select: {
+      eventId: true,
+    },
+  })
+
+  console.log('creation du participant : ', participant)
+
   return response.send({
     id: event.id,
   })
