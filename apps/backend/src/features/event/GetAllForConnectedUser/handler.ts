@@ -24,8 +24,6 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
     },
   })
 
-  console.log(identity.user)
-
   return response.send({
     events: event,
   })
