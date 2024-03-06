@@ -1,9 +1,9 @@
-export * from './register'
-
-import Register from './register'
+import Register from './Register'
+import Connect from './Connect'
 
 const User = {
   Register,
+  Connect,
 }
 
 export { User }

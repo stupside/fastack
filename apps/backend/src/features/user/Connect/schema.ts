@@ -5,19 +5,13 @@ import { Static, Type } from '@sinclair/typebox'
 const Body = Type.Object(
   {
     firstname: Type.String({
-      description: "The user's name",
-      minLength: 5,
-      maxLength: 15,
+      description: "The user's firstname",
     }),
     lastname: Type.String({
-      description: "The user's last name",
-      minLength: 5,
-      maxLength: 25,
+      description: "The user's lastname",
     }),
     password: Type.String({
       description: "The user's password",
-      minLength: 8,
-      maxLength: 20,
     }),
   },
   {
@@ -28,6 +22,7 @@ const Body = Type.Object(
 const Reply = Type.Object(
   {
     id: Type.Number({ description: "The user's id" }),
+    token: Type.String({ description: "The user's token" }),
   },
   {
     readOnly: true,
@@ -41,7 +36,7 @@ export interface Interface extends RouteGenericInterface {
 
 export const Schema: FastifySchema = {
   tags: ['user'],
-  description: 'Create a user',
+  description: 'Connect User',
   body: Body,
   response: {
     200: Reply,

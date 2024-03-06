@@ -4,20 +4,17 @@ import { Static, Type } from '@sinclair/typebox'
 
 const Body = Type.Object(
   {
-    firstname: Type.String({
-      description: "The user's name",
-      minLength: 5,
-      maxLength: 15,
+    name: Type.String({
+      description: "The event's name",
     }),
-    lastname: Type.String({
-      description: "The user's last name",
-      minLength: 5,
-      maxLength: 25,
+    nbParticipantMax: Type.Number({
+      description: "The event's maximum participant",
     }),
-    password: Type.String({
-      description: "The user's password",
-      minLength: 8,
-      maxLength: 20,
+    startDate: Type.Date({
+      description: "The event's start date",
+    }),
+    endDate: Type.Date({
+      description: "The event's end date",
     }),
   },
   {
@@ -27,7 +24,7 @@ const Body = Type.Object(
 
 const Reply = Type.Object(
   {
-    id: Type.Number({ description: "The user's id" }),
+    id: Type.Number({ description: "The event's id" }),
   },
   {
     readOnly: true,
@@ -40,9 +37,10 @@ export interface Interface extends RouteGenericInterface {
 }
 
 export const Schema: FastifySchema = {
-  tags: ['user'],
-  description: 'Create a user',
+  tags: ['event'],
+  description: 'Create an event',
   body: Body,
+  security: [{ bearerAuth: [] }],
   response: {
     200: Reply,
   },
