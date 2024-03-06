@@ -7,7 +7,7 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
 
   if (identity === undefined) throw new Error('Unauthorized')
 
-  const event = await prisma.event.findMany({
+  const events = await prisma.event.findMany({
     where: {
       OR: [
         {
@@ -25,6 +25,6 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
   })
 
   return response.send({
-    events: event,
+    events: events,
   })
 }
