@@ -26,7 +26,11 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
   if (user.password === request.body.password) {
     const payload: Static<typeof MySessionSchema> = {
       user: user.id,
-      claims: [Hook.Sse.Claim, Event.Create.Claim],
+      claims: [
+        Hook.Sse.Claim,
+        Event.Create.Claim,
+        Event.GetAllForConnectedUser.Claim,
+      ],
     }
 
     const token = await response.jwtSign(payload)
