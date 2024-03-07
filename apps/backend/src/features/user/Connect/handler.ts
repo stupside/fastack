@@ -29,7 +29,8 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
       claims: [
         Hook.Sse.Claim,
         Event.Create.Claim,
-        Event.GetAllForConnectedUser.Claim,
+        Event.GetHosting.Claim,
+        Event.GetAttending.Claim,
       ],
     }
 

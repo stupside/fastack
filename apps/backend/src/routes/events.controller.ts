@@ -1,15 +1,13 @@
 import { FastifyInstance } from 'fastify'
-import Event from '../features/event'
-import GetAllForConnectedUser from '../features/event/GetAllForConnectedUser'
 
-const { Create } = Event
+import Event from '../features/event'
+
+const { Create, GetAttending, GetHosting } = Event
 
 const route = async (fastify: FastifyInstance) => {
-  fastify.get(
-    '',
-    GetAllForConnectedUser.Shorthand,
-    GetAllForConnectedUser.Route(fastify),
-  )
+  fastify.get('/hosting', GetHosting.Shorthand, GetHosting.Route(fastify))
+  fastify.get('/attending', GetAttending.Shorthand, GetAttending.Route(fastify))
+
   fastify.post('/create', Create.Shorthand, Create.Route(fastify))
 }
 

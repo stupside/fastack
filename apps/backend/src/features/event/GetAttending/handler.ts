@@ -1,5 +1,7 @@
 import { MyRoute } from '../../../fastify'
+
 import prisma from '../../../utils/prisma'
+
 import { Interface } from './schema'
 
 export const Handler: MyRoute<Interface> = () => async (request, response) => {
@@ -9,22 +11,21 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
 
   const events = await prisma.event.findMany({
     where: {
-      OR: [
-        {
-          userId: identity.user,
-        },
-        {
-          participants: {
-            some: {
-              userId: identity.user,
-            },
+      participants: {
+        some: {
+          user: {
+            id: identity.user,
           },
         },
-      ],
+      },
+    },
+    select: {
+      id: true,
+      name: true,
+      userId: true,
+      nbParticipantMax: true,
     },
   })
 
-  return response.send({
-    events: events,
-  })
+  return response.send(events)
 }

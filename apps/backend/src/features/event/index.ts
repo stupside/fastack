@@ -1,9 +1,12 @@
 import Create from './Create'
-import GetAllForConnectedUser from './GetAllForConnectedUser'
+
+import GetHosting from './GetHosting'
+import GetAttending from './GetAttending'
 
 const Event = {
   Create,
-  GetAllForConnectedUser,
+  GetHosting,
+  GetAttending,
 }
 
 export { Event }

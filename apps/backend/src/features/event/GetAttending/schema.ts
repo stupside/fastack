@@ -24,16 +24,9 @@ const Event = Type.Object({
   }),
 })
 
-const Reply = Type.Object(
-  {
-    events: Type.Array(Event, {
-      description: 'array evenement where connected user participate in it',
-    }),
-  },
-  {
-    readOnly: true,
-  },
-)
+const Reply = Type.Array(Event, {
+  description: 'array of event where connected user is the author',
+})
 
 export interface Interface extends RouteGenericInterface {
   Reply: Static<typeof Reply>
