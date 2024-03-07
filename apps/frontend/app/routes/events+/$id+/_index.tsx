@@ -1,5 +1,5 @@
 import { useState, type FC, useEffect, useMemo } from 'react'
-import { Button, Tooltip } from 'flowbite-react';
+import { Button, Tooltip } from 'flowbite-react'
 
 import { Form, useLoaderData } from '@remix-run/react'
 
@@ -225,63 +225,57 @@ const PageComponent: FC = () => {
         <h2>{date}</h2>
       </header>
       <div className="px-3 w-full flex flex-row justify-center">
-          <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 max-w-2xl m-1">
-            {menus.map((menu) => {
-              const selected = menu.id === selection
+        <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 max-w-2xl m-1">
+          {menus.map((menu) => {
+            const selected = menu.id === selection
 
-              const highlight =
-                  selected && menu.id === choice.dish ? true : selected
+            const highlight =
+              selected && menu.id === choice.dish ? true : selected
 
-              return (
-                  <article key={menu.id} className="flex flex-col gap-y-4 w-80 gap-x-2">
-
-                    <Tooltip content={menu.description}>
-                      <div className="bg-sky-500 h-10 w-80 flex flex-row justify-center items-center">
-                        <span className="text-white font-thin mx-4">{menu.name}</span>
-                        {/* tooltip icon */}
-                        {/* ? probably show only if description is provided*/}
-                        <svg className="w-6 h-6 text-white" aria-hidden="true"
-                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 11h2v5m-2 0h4m-2.6-8.5h0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                        </svg>
-                      </div>
-                    </Tooltip>
-
-
-                    <header className="flex justify-between">
-                      <div>
-                        <h1 className="text-xl">{menu.name}</h1>
-                        <p>{menu.description}</p>
-                      </div>
-                      <div>
-                      {highlight === false && (
-                            <Form method="post">
-                              <input type="hidden" name="dish" value={selection}/>
-                              <Submit>Choose</Submit>
-                            </Form>
-                        )}
-                      </div>
-                    </header>
-                    <ul className="list-none">
-                      {menu.dishes.map((dish) => (
-                          <li
-                              key={dish.id}
-                              className="px-4 py-3 flex justify-between border-2 bg-slate-50"
-                          >
-                            {dish.name}
-                          </li>
-                      ))}
-                    </ul>
-                  </article>
-              )
-            })}
-          </div>
+            return (
+              <article
+                key={menu.id}
+                className="flex flex-col w-80"
+              >
+                <Tooltip content={menu.description}>
+                  <div className="bg-sky-500 h-10 w-80 flex flex-row justify-center items-center">
+                    <span className="text-white font-thin mx-4">
+                      {menu.name}
+                    </span>
+                    {/* tooltip icon */}
+                    {/* ? probably show only if description is provided*/}
+                    <svg
+                      className="w-6 h-6 text-white"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1"
+                        d="M10 11h2v5m-2 0h4m-2.6-8.5h0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+                  </div>
+                </Tooltip>
+                {menu.dishes.map((dish) => (
+                    <div className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
+                      <span className="text-black font-thin mx-4">
+                        {dish.name}
+                      </span>
+                    </div>
+                ))}
+              </article>
+            )
+          })}
+        </div>
         <div className="w-80">
           <span>chosen menu description</span>
         </div>
       </div>
-
 
       {/*<div className="grid px-3 grid-cols-3 gap-x-5">*/}
 
