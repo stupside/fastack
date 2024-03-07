@@ -233,10 +233,7 @@ const PageComponent: FC = () => {
               selected && menu.id === choice.dish ? true : selected
 
             return (
-              <article
-                key={menu.id}
-                className="flex flex-col w-80"
-              >
+              <article key={menu.id} className="flex flex-col w-80">
                 <Tooltip content={menu.description}>
                   <div className="bg-sky-500 h-10 w-80 flex flex-row justify-center items-center">
                     <span className="text-white font-thin mx-4">
@@ -262,11 +259,11 @@ const PageComponent: FC = () => {
                   </div>
                 </Tooltip>
                 {menu.dishes.map((dish) => (
-                    <div className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
-                      <span className="text-black font-thin mx-4">
-                        {dish.name}
-                      </span>
-                    </div>
+                  <div className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
+                    <span className="text-black font-thin mx-4">
+                      {dish.name}
+                    </span>
+                  </div>
                 ))}
               </article>
             )
