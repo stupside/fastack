@@ -59,6 +59,8 @@ model Menu {
 
   participants Participant[]
 
+  diets Diet[]
+
   event Event @relation(fields: [eventId], references: [id])
 }
 
@@ -83,7 +85,6 @@ model Ingredient {
 
   measurementUnitId Int
 
-  diets       Diet[]
   ingredients IngredientInDish[]
 
   measurementUnit MeasurementUnit @relation(fields: [measurementUnitId], references: [id])
@@ -94,8 +95,9 @@ model Diet {
 
   name String @unique
 
-  ingredients Ingredient[]
-  User        User[]
+  User User[]
+
+  menus Menu[]
 }
 
 model MeasurementUnit {

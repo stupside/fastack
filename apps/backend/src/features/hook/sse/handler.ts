@@ -7,6 +7,7 @@ import { Interface } from './schema'
 export const Handler: MyRoute<Interface> =
   (fastify) => async (request, response) => {
     const identity = request.requestContext.get('identity')
+    // pour récupérer l'utilisateur
 
     if (identity === undefined) throw new Error('Unauthorized')
 
