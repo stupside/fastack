@@ -7,6 +7,7 @@ import { Static } from '@sinclair/typebox'
 import Hook from '../../hook'
 import Event from '../../event'
 import Participant from '../../participant'
+import User from '../index'
 
 export const Handler: MyRoute<Interface> = () => async (request, response) => {
   const user = await prisma.user.findFirst({
@@ -37,6 +38,9 @@ export const Handler: MyRoute<Interface> = () => async (request, response) => {
         Participant.Participate.Claim,
         Participant.DeleteParticipation.Claim,
         Participant.UpdateParticipation.Claim,
+        User.CreateDiet.Claim,
+        User.GetAllDiet.Claim,
+        User.RemoveDiet.Claim,
       ],
     }
 
