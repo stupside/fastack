@@ -1,4 +1,4 @@
-import { useState, type FC, useEffect, useMemo } from 'react'
+import { useState, type FC, useEffect } from 'react'
 import { Tooltip } from 'flowbite-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWheatAlt } from '@fortawesome/free-solid-svg-icons'
@@ -213,11 +213,6 @@ const PageComponent: FC = () => {
   const { title, choice, date, menus } = useLoaderData<typeof loader>()
 
   const [selection, setSelection] = useState(choice.dish)
-
-  // const menu = useMemo(
-  //   () => menus.find((menu) => menu.id === selection),
-  //   [menus, selection],
-  // )
 
   useEffect(() => {
     setSelection(choice.dish)
