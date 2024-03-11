@@ -214,10 +214,10 @@ const PageComponent: FC = () => {
 
   const [selection, setSelection] = useState(choice.dish)
 
-  const menu = useMemo(
-    () => menus.find((menu) => menu.id === selection),
-    [menus, selection],
-  )
+  // const menu = useMemo(
+  //   () => menus.find((menu) => menu.id === selection),
+  //   [menus, selection],
+  // )
 
   useEffect(() => {
     setSelection(choice.dish)
@@ -233,10 +233,6 @@ const PageComponent: FC = () => {
         <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 max-w-2xl m-1">
           {menus.map((menu) => {
             const selected = menu.id === selection
-
-            const highlight =
-              selected && menu.id === choice.dish ? true : selected
-
             return (
               <div>
                 <div className={selected ? 'border-4 border-pink-400' : ''}>
