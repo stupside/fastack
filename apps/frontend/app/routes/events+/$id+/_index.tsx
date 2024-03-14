@@ -248,7 +248,7 @@ const PageComponent: FC = () => {
                         <span className="text-white font-thin mx-4">
                           {menu.name}
                         </span>
-                        <MenuTooltipIcon/>
+                        <MenuTooltipIcon />
                       </div>
                     </Tooltip>
                     {menu.dishes.map((dish) => (
