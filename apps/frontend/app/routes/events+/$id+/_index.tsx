@@ -1,6 +1,10 @@
-import { useState, type FC, useEffect, useMemo } from 'react'
+import { useState, type FC, useEffect, type PropsWithChildren } from 'react'
+import { Tooltip } from 'flowbite-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWheatAlt } from '@fortawesome/free-solid-svg-icons'
+import MenuTooltipIcon from '~/shared/MenuTooltipIcon'
 
-import { Form, useLoaderData } from '@remix-run/react'
+import { useLoaderData } from '@remix-run/react'
 
 import {
   json,
@@ -9,7 +13,6 @@ import {
 } from '@remix-run/node'
 
 import storage from '~/server/storage/session.server'
-import Submit from '~/client/components/commons/forms/Submit'
 
 export const meta: MetaFunction = () => {
   return [
@@ -27,7 +30,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   void session // TODO: get event
 
   return json({
-    title: 'Event 1',
+    title: 'Soiree chez Kirill',
     date: '2022-01-01',
     choice: {
       dish: 0,
@@ -35,169 +38,176 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     menus: [
       {
         id: 0,
-        name: 'Menu 1',
-        description: 'Description 1',
+        name: 'Vegetarian',
+        description:
+          'Vegetarianism is the practice of abstaining from the consumption of meat. It may also include abstaining ',
         dishes: [
           {
             id: 0,
-            name: 'Dish 1',
-            description: 'Description 1',
+            name: 'Chicken Alfredo',
+            description: 'Creamy pasta with grilled chicken',
             ingredients: [
               {
                 id: 0,
-                name: 'Ingredient 1',
+                name: 'Pasta',
               },
               {
                 id: 1,
-                name: 'Ingredient 2',
+                name: 'Chicken',
               },
               {
                 id: 2,
-                name: 'Ingredient 3',
+                name: 'Cream',
               },
               {
                 id: 3,
-                name: 'Ingredient 4',
+                name: 'Parmesan cheese',
               },
             ],
           },
           {
             id: 1,
-            name: 'Dish 2',
-            description: 'Description 2',
+            name: 'Caprese Salad',
+            description: 'Fresh mozzarella, tomatoes, and basil',
             ingredients: [
               {
                 id: 0,
-                name: 'Ingredient 1',
+                name: 'Tomatoes',
               },
               {
                 id: 1,
-                name: 'Ingredient 2',
+                name: 'Mozzarella cheese',
               },
               {
                 id: 2,
-                name: 'Ingredient 3',
+                name: 'Basil',
               },
               {
                 id: 3,
-                name: 'Ingredient 4',
+                name: 'Olive oil',
               },
             ],
           },
         ],
+        allergens: ['Gluten', 'Dairy'],
       },
       {
         id: 1,
-        name: 'Menu 2',
-        description: 'Description 2',
+        name: 'Vegetarian',
+        description:
+          'Vegetarianism is the practice of abstaining from the consumption of meat.',
         dishes: [
           {
             id: 0,
-            name: 'Dish 1',
-            description: 'Description 1',
+            name: 'Grilled Salmon',
+            description: 'Fresh salmon grilled to perfection',
             ingredients: [
               {
                 id: 0,
-                name: 'Ingredient 1',
+                name: 'Salmon',
               },
               {
                 id: 1,
-                name: 'Ingredient 2',
+                name: 'Lemon',
               },
               {
                 id: 2,
-                name: 'Ingredient 3',
+                name: 'Garlic',
               },
               {
                 id: 3,
-                name: 'Ingredient 4',
+                name: 'Butter',
               },
             ],
           },
           {
             id: 1,
-            name: 'Dish 2',
-            description: 'Description 2',
+            name: 'Vegetable Stir-Fry',
+            description: 'Assorted vegetables stir-fried with soy sauce',
             ingredients: [
               {
                 id: 0,
-                name: 'Ingredient 1',
+                name: 'Broccoli',
               },
               {
                 id: 1,
-                name: 'Ingredient 2',
+                name: 'Carrots',
               },
               {
                 id: 2,
-                name: 'Ingredient 3',
+                name: 'Bell peppers',
               },
               {
                 id: 3,
-                name: 'Ingredient 4',
+                name: 'Soy sauce',
               },
             ],
           },
         ],
+        allergens: ['Fish', 'Soy'],
       },
       {
         id: 2,
         name: 'Menu 3',
-        description: 'Description 3',
+        description: 'An omnivore is an animal that has the ability to e',
         dishes: [
           {
             id: 0,
-            name: 'Dish 1',
-            description: 'Description 1',
+            name: 'Beef Lasagna',
+            description: 'Layers of pasta, ground beef, and tomato sauce',
             ingredients: [
               {
                 id: 0,
-                name: 'Ingredient 1',
+                name: 'Pasta',
               },
               {
                 id: 1,
-                name: 'Ingredient 2',
+                name: 'Ground beef',
               },
               {
                 id: 2,
-                name: 'Ingredient 3',
+                name: 'Tomato sauce',
               },
               {
                 id: 3,
-                name: 'Ingredient 4',
+                name: 'Mozzarella cheese',
               },
             ],
           },
         ],
+        allergens: ['Gluten', 'Dairy'],
       },
       {
         id: 3,
         name: 'Menu 4',
-        description: 'Description 4',
+        description:
+          'An omnivore is an animal that has the ability to eat and survive on both plant and anim',
         dishes: [
           {
             id: 0,
-            name: 'Dish 1',
-            description: 'Description 1',
+            name: 'Vegetarian Pizza',
+            description: 'Pizza topped with assorted vegetables',
             ingredients: [
               {
                 id: 0,
-                name: 'Ingredient 1',
+                name: 'Pizza dough',
               },
               {
                 id: 1,
-                name: 'Ingredient 2',
+                name: 'Tomatoes',
               },
               {
                 id: 2,
-                name: 'Ingredient 3',
+                name: 'Mushrooms',
               },
               {
                 id: 3,
-                name: 'Ingredient 4',
+                name: 'Onions',
               },
             ],
           },
         ],
+        allergens: ['Gluten'],
       },
     ],
   })
@@ -208,91 +218,150 @@ const PageComponent: FC = () => {
 
   const [selection, setSelection] = useState(choice.dish)
 
-  const menu = useMemo(
-    () => menus.find((menu) => menu.id === selection),
-    [menus, selection],
-  )
-
   useEffect(() => {
     setSelection(choice.dish)
   }, [choice.dish])
 
   return (
     <>
-      <header className="mb-4">
-        <h1 className="text-2xl">{title}</h1>
+      <header className="m-10 w-full flex flex-row justify-center items-center">
+        <h1 className="text-2xl mx-4">{title}</h1>
         <h2>{date}</h2>
       </header>
-      <div className="grid grid-cols-3 gap-x-5">
-        <div className="grid col-span-2 grid-cols-2 gap-5">
-          {menus.map((menu) => {
-            const selected = menu.id === selection
-
-            const highlight =
-              selected && menu.id === choice.dish ? true : selected
-
-            return (
-              <article key={menu.id} className="flex flex-col gap-y-4">
-                <header className="flex justify-between">
-                  <div>
-                    <h1 className="text-xl">{menu.name}</h1>
-                    <p>{menu.description}</p>
-                  </div>
-                  <div>
-                    {highlight === false && (
-                      <Form method="post">
-                        <input type="hidden" name="dish" value={selection} />
-                        <Submit>Choose</Submit>
-                      </Form>
-                    )}
-                  </div>
-                </header>
-                <ul className="list-none">
-                  {menu.dishes.map((dish) => (
-                    <li
-                      key={dish.id}
-                      className="px-4 py-3 flex justify-between border-2 bg-slate-50"
+      <div className="px-3 w-full flex flex-row justify-center">
+        <div>
+          <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 max-w-2xl m-1">
+            {menus.map((menu) => {
+              const selected = menu.id === selection
+              return (
+                <div key={menu.id}>
+                  <div
+                    className={
+                      selected
+                        ? 'border-4 border-pink-400'
+                        : 'border-4 border-zinc-50'
+                    }
+                    onClick={() => setSelection(menu.id)}
+                  >
+                    <article
+                      key={menu.id}
+                      className={
+                        'flex flex-col w-80 hover:opacity-75 hover:cursor-pointer'
+                      }
                     >
-                      {dish.name}
-                    </li>
-                  ))}
-                </ul>
-              </article>
+                      <Tooltip content={menu.description}>
+                        <div className="bg-sky-500 h-10 w-80 flex flex-row justify-center items-center">
+                          <span className="text-white font-thin mx-4">
+                            {menu.name}
+                          </span>
+                          <MenuTooltipIcon />
+                        </div>
+                      </Tooltip>
+                      {menu.dishes.map((dish) => (
+                        <div
+                          key={dish.id}
+                          className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0"
+                        >
+                          <span className="text-black font-thin mx-4">
+                            {dish.name}
+                          </span>
+                        </div>
+                      ))}
+                    </article>
+                  </div>
+                  {menu.allergens.map((allergen) => {
+                    return (
+                      <DietConstraint key={allergen} dietConstraint={allergen}>
+                        <FontAwesomeIcon icon={faWheatAlt} />
+                        <span className={'opacity-100 font-thin mx-4 text-sm'}>
+                          {allergen}
+                        </span>
+                      </DietConstraint>
+                    )
+                  })}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <div className="w-80 flex flex-col justify-start items-center mx-10">
+          {menus.map((menu) => {
+            if (menu.id !== selection) {
+              return
+            }
+            return (
+              <div key={menu.id}>
+                <div className="text-2xl my-2">{menu.name}</div>
+                <div>{menu.description}</div>
+                {menu.dishes.map((dish) => (
+                  <>
+                    <div className="flex flex-col justify-center w-80 my-3">
+                      <div className="flex flex-row justify-start items-center">
+                        <span className="text-black font-thin text-lg">
+                          {dish.name}
+                        </span>
+                      </div>
+                      <div className="flex flex-row justify-start items-center">
+                        <span className="text-black font-thin text-xs">
+                          {dish.description}
+                        </span>
+                      </div>
+                    </div>
+
+                    {dish.ingredients.map((ingredient) => {
+                      return (
+                        <>
+                          <div key={ingredient.id}>
+                            <FontAwesomeIcon icon={faWheatAlt} />
+                            <span
+                              className={'opacity-100 font-thin mx-4 text-sm'}
+                            >
+                              {ingredient.name}
+                            </span>
+                          </div>
+                        </>
+                      )
+                    })}
+                  </>
+                ))}
+                <div className="w-full flex flex-row justify-start my-10">
+                  <button className="p-1 bg-[#0e1729] text-white font-thin w-52 text-sm hover:opacity-75">
+                    Submit
+                  </button>
+                </div>
+              </div>
             )
           })}
         </div>
-        <div className="flex">
-          {menu ? (
-            <article>
-              <h1 className="text-xl">My menu {menu.name}</h1>
-              <p>{menu.description}</p>
-              <h2>Dishes</h2>
-              <ul className="list-none">
-                {menu.dishes.map((dish) => (
-                  <li key={dish.id}>
-                    <div>
-                      <h3>{dish.name}</h3>
-                    </div>
-                    <ul>
-                      {dish.ingredients.map((ingredient) => (
-                        <li
-                          key={ingredient.id}
-                          className="px-4 py-3 flex justify-between border-2 bg-slate-50"
-                        >
-                          {ingredient.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ) : (
-            <h1 className="m-auto">No menu selected</h1>
-          )}
-        </div>
       </div>
     </>
+  )
+}
+
+const DietConstraint: FC<
+  PropsWithChildren<{
+    dietConstraint: string
+  }>
+> = ({ children, dietConstraint }) => {
+  if (dietConstraint !== 'Gluten') {
+    return (
+      <div
+        className={
+          'text-black h-10 w-80 border-t-0 opacity-100 flex flex-row justify-start items-center m-0 p-0'
+        }
+      >
+        {children}
+      </div>
+    )
+  }
+  return (
+    <div
+      className={
+        'text-red-600 h-10 w-80 border-t-0 opacity-100 flex flex-row justify-start items-center m-0 p-0'
+      }
+    >
+      {children}
+    </div>
   )
 }
 
