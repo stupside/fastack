@@ -5,7 +5,6 @@ import { Static, Type } from '@sinclair/typebox'
 const Params = Type.Object(
   {
     menuId: Type.Integer({
-      // il faut matcher avec le paramètre de l'URL
       description: "The menu's Id",
       minimum: 0,
     }),
@@ -22,6 +21,6 @@ export interface Interface extends RouteGenericInterface {
 export const Schema: FastifySchema = {
   tags: ['menu'],
   description: 'Choose a menu',
-  security: [{ bearerAuth: [] }], // pour obliger l'authentification de l'utilisateur
+  security: [{ bearerAuth: [] }],
   params: Params,
 }
