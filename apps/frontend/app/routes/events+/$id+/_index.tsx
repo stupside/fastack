@@ -259,8 +259,9 @@ const PageComponent: FC = () => {
                       </Tooltip>
                       {menu.dishes.map((dish) => (
                         <div
-                            key={dish.id}
-                            className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
+                          key={dish.id}
+                          className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0"
+                        >
                           <span className="text-black font-thin mx-4">
                             {dish.name}
                           </span>
