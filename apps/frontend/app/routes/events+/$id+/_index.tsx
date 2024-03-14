@@ -234,7 +234,7 @@ const PageComponent: FC = () => {
             {menus.map((menu) => {
               const selected = menu.id === selection
               return (
-                <div>
+                <div key={menu.id}>
                   <div
                     className={
                       selected
@@ -258,7 +258,9 @@ const PageComponent: FC = () => {
                         </div>
                       </Tooltip>
                       {menu.dishes.map((dish) => (
-                        <div className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
+                        <div
+                            key={dish.id}
+                            className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
                           <span className="text-black font-thin mx-4">
                             {dish.name}
                           </span>
@@ -287,7 +289,7 @@ const PageComponent: FC = () => {
               return
             }
             return (
-              <div>
+              <div key={menu.id}>
                 <div className="text-2xl my-2">{menu.name}</div>
                 <div>{menu.description}</div>
                 {menu.dishes.map((dish) => (
@@ -308,7 +310,7 @@ const PageComponent: FC = () => {
                     {dish.ingredients.map((ingredient) => {
                       return (
                         <>
-                          <div>
+                          <div key={ingredient.id}>
                             <FontAwesomeIcon icon={faWheatAlt} />
                             <span
                               className={'opacity-100 font-thin mx-4 text-sm'}
