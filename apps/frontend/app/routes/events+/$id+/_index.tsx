@@ -1,9 +1,9 @@
-import {useState, type FC, useEffect, type PropsWithChildren} from 'react'
-import {Tooltip} from 'flowbite-react'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faWheatAlt} from '@fortawesome/free-solid-svg-icons'
+import { useState, type FC, useEffect, type PropsWithChildren } from 'react'
+import { Tooltip } from 'flowbite-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWheatAlt } from '@fortawesome/free-solid-svg-icons'
 
-import {useLoaderData} from '@remix-run/react'
+import { useLoaderData } from '@remix-run/react'
 
 import {
   json,
@@ -21,7 +21,7 @@ export const meta: MetaFunction = () => {
   ]
 }
 
-export const loader = async ({request, params}: LoaderFunctionArgs) => {
+export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   if (params.id === undefined) throw new Error()
 
   const session = await storage.extractSession(request)
@@ -38,7 +38,8 @@ export const loader = async ({request, params}: LoaderFunctionArgs) => {
       {
         id: 0,
         name: 'Vegetarian',
-        description: 'Vegetarianism is the practice of abstaining from the consumption of meat. It may also include abstaining ',
+        description:
+          'Vegetarianism is the practice of abstaining from the consumption of meat. It may also include abstaining ',
         dishes: [
           {
             id: 0,
@@ -92,7 +93,8 @@ export const loader = async ({request, params}: LoaderFunctionArgs) => {
       {
         id: 1,
         name: 'Vegetarian',
-        description: 'Vegetarianism is the practice of abstaining from the consumption of meat.',
+        description:
+          'Vegetarianism is the practice of abstaining from the consumption of meat.',
         dishes: [
           {
             id: 0,
@@ -177,7 +179,8 @@ export const loader = async ({request, params}: LoaderFunctionArgs) => {
       {
         id: 3,
         name: 'Menu 4',
-        description: 'An omnivore is an animal that has the ability to eat and survive on both plant and anim',
+        description:
+          'An omnivore is an animal that has the ability to eat and survive on both plant and anim',
         dishes: [
           {
             id: 0,
@@ -210,7 +213,7 @@ export const loader = async ({request, params}: LoaderFunctionArgs) => {
 }
 
 const PageComponent: FC = () => {
-  const {title, choice, date, menus} = useLoaderData<typeof loader>()
+  const { title, choice, date, menus } = useLoaderData<typeof loader>()
 
   const [selection, setSelection] = useState(choice.dish)
 
@@ -219,110 +222,120 @@ const PageComponent: FC = () => {
   }, [choice.dish])
 
   return (
-      <>
-        <header className="mb-4 w-full flex flex-row justify-center items-center">
-          <h1 className="text-2xl mx-4">{title}</h1>
-          <h2>{date}</h2>
-        </header>
-        <div className="px-3 w-full flex flex-row justify-center">
-          <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 max-w-2xl m-1">
-            {menus.map((menu) => {
-              const selected = menu.id === selection
-              return (
-                  <div>
-                    <div
-                        className={selected ? 'border-4 border-pink-400' : 'border-4 border-zinc-50'}
-                        onClick={() => setSelection(menu.id)}
-                    >
-                      <article key={menu.id} className={'flex flex-col w-80'}>
-                        <Tooltip content={menu.description}>
-                          <div className="bg-sky-500 h-10 w-80 flex flex-row justify-center items-center">
+    <>
+      <header className="mb-4 w-full flex flex-row justify-center items-center">
+        <h1 className="text-2xl mx-4">{title}</h1>
+        <h2>{date}</h2>
+      </header>
+      <div className="px-3 w-full flex flex-row justify-center">
+        <div className="grid gap-2 sm:grid-cols-1 lg:grid-cols-2 max-w-2xl m-1">
+          {menus.map((menu) => {
+            const selected = menu.id === selection
+            return (
+              <div>
+                <div
+                  className={
+                    selected
+                      ? 'border-4 border-pink-400'
+                      : 'border-4 border-zinc-50'
+                  }
+                  onClick={() => setSelection(menu.id)}
+                >
+                  <article key={menu.id} className={'flex flex-col w-80'}>
+                    <Tooltip content={menu.description}>
+                      <div className="bg-sky-500 h-10 w-80 flex flex-row justify-center items-center">
                         <span className="text-white font-thin mx-4">
                           {menu.name}
                         </span>
-                            {/* tooltip icon */}
-                            {/* ? probably show only if description is provided*/}
-                            <svg
-                                className="w-6 h-6 text-white"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                            >
-                              <path
-                                  stroke="currentColor"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="1"
-                                  d="M10 11h2v5m-2 0h4m-2.6-8.5h0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                              />
-                            </svg>
-                          </div>
-                        </Tooltip>
-                        {menu.dishes.map((dish) => (
-                            <div
-                                className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
+                        {/* tooltip icon */}
+                        {/* ? probably show only if description is provided*/}
+                        <svg
+                          className="w-6 h-6 text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="1"
+                            d="M10 11h2v5m-2 0h4m-2.6-8.5h0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                          />
+                        </svg>
+                      </div>
+                    </Tooltip>
+                    {menu.dishes.map((dish) => (
+                      <div className="border border-black h-10 w-80 border-t-0 flex flex-row justify-center items-center m-0 p-0">
                         <span className="text-black font-thin mx-4">
                           {dish.name}
                         </span>
-                            </div>
-                        ))}
-                      </article>
-                    </div>
-                    {menu.allergens.map((allergen) => {
-                      if (allergen === 'Gluten') {
-
-                      }
-                      return <DietConstraint key={allergen} dietConstraint={allergen}>
-                        <FontAwesomeIcon icon={faWheatAlt}/>
-                        <span className={
-                          "opacity-100 font-thin mx-4 text-sm"
-                        }>
-                          {allergen}
-                        </span>
-                      </DietConstraint>
-                    })}
-                  </div>
-              )
-            })}
-          </div>
-          <div className="w-80 flex flex-col justify-start items-center m-2">
-            <div className="text-xl align-middle">Your selection</div>
-            {menus.map((menu) => {
-              if (menu.id !== selection) {
-                return
-              }
-              return (
-                  <div>
-                    <div className="text-2xl my-2">{menu.name}</div>
-                    <div>{menu.description}</div>
-                  </div>
-              )
-            })}
-          </div>
+                      </div>
+                    ))}
+                  </article>
+                </div>
+                {menu.allergens.map((allergen) => {
+                  return (
+                    <DietConstraint key={allergen} dietConstraint={allergen}>
+                      <FontAwesomeIcon icon={faWheatAlt} />
+                      <span className={'opacity-100 font-thin mx-4 text-sm'}>
+                        {allergen}
+                      </span>
+                    </DietConstraint>
+                  )
+                })}
+              </div>
+            )
+          })}
         </div>
-        <div className="w-full flex flex-row justify-center m-4">
-          <button className="p-2 bg-[#0e1729] text-white w-72"> Submit</button>
+        <div className="w-80 flex flex-col justify-start items-center m-2">
+          <div className="text-xl align-middle">Your selection</div>
+          {menus.map((menu) => {
+            if (menu.id !== selection) {
+              return
+            }
+            return (
+              <div>
+                <div className="text-2xl my-2">{menu.name}</div>
+                <div>{menu.description}</div>
+              </div>
+            )
+          })}
         </div>
-      </>
+      </div>
+      <div className="w-full flex flex-row justify-center m-4">
+        <button className="p-2 bg-[#0e1729] text-white w-72"> Submit</button>
+      </div>
+    </>
   )
 }
 
-const DietConstraint: FC<PropsWithChildren<{
-  dietConstraint: string
-}>> =({children, dietConstraint}) => {
+const DietConstraint: FC<
+  PropsWithChildren<{
+    dietConstraint: string
+  }>
+> = ({ children, dietConstraint }) => {
   if (dietConstraint !== 'Gluten') {
-    return <div className={
-      "text-black h-10 w-80 border-t-0 opacity-100 flex flex-row justify-start items-center m-0 p-0"
-    }>
+    return (
+      <div
+        className={
+          'text-black h-10 w-80 border-t-0 opacity-100 flex flex-row justify-start items-center m-0 p-0'
+        }
+      >
+        {children}
+      </div>
+    )
+  }
+  return (
+    <div
+      className={
+        'text-red-600 h-10 w-80 border-t-0 opacity-100 flex flex-row justify-start items-center m-0 p-0'
+      }
+    >
       {children}
     </div>
-  }
-  return <div className={
-    "text-red-600 h-10 w-80 border-t-0 opacity-100 flex flex-row justify-start items-center m-0 p-0"
-  }>
-    {children}
-  </div>
+  )
 }
 
 export default PageComponent
